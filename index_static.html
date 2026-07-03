@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sales Insights — Interactive Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <div class="title">Sales Insights Analytics</div>
+        <div class="hint">Interactive final-year project dashboard</div>
+      </div>
+      <div><a class="btn" href="#live">View Live Dashboard</a></div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-card">
+        <h2>Project Summary</h2>
+        <p class="hint">A complete ETL pipeline and analytics views powering interactive charts rendered directly from a shipped SQLite database.</p>
+        <div class="kpis" style="margin-top:12px">
+          <div class="kpi"><div class="label">Total Revenue</div><div id="k-revenue" class="value">—</div></div>
+          <div class="kpi"><div class="label">Total Profit</div><div id="k-profit" class="value">—</div></div>
+          <div class="kpi"><div class="label">Total Orders</div><div id="k-orders" class="value">—</div></div>
+          <div class="kpi"><div class="label">Avg Order Value</div><div id="k-aov" class="value">—</div></div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Benchmark</h3>
+        <div class="kpi"><div class="label">Index Speedup</div><div id="k-speedup" class="value">—</div></div>
+        <canvas id="chart-benchmark" style="margin-top:12px"></canvas>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Live Interactive Dashboard</h3>
+      <div id="live" class="grid">
+        <div class="card">
+          <h4>Revenue Trend</h4>
+          <canvas id="chart-monthly"></canvas>
+        </div>
+        <div class="card">
+          <h4>Category Breakdown</h4>
+          <canvas id="chart-categories"></canvas>
+        </div>
+        <div class="card">
+          <h4>Top Products</h4>
+          <canvas id="chart-products"></canvas>
+        </div>
+        <div class="card">
+          <h4>Regional Performance</h4>
+          <canvas id="chart-regional"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Top Customers</h3>
+      <div class="card table-wrap">
+        <table style="width:100%;border-collapse:collapse;color:#e6eef6">
+          <thead><tr style="text-align:left;color:var(--muted)"><th>ID</th><th>Customer</th><th>Segment</th><th>Last Order</th><th>Frequency</th><th>Monetary</th></tr></thead>
+          <tbody id="customers-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section footer">
+      <div>Built by you — <a href="#">View Source</a></div>
+      <div><a class="btn" href="index.html">Open Showcase Page</a></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

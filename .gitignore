@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+sales_insights.db
+data/fact_sales.csv
+data/dim_date.csv
+logs/*.csv
+.ipynb_checkpoints/

@@ -1,0 +1,49 @@
+product_id,product_name,category,sub_category,unit_cost
+1,UltraBook Pro 14,Technology,Laptops,258.66
+2,SlimTop 13,Technology,Laptops,17.8
+3,PowerNote X,Technology,Laptops,115.81
+4,UltraHD Monitor 27,Technology,Monitors,95.5
+5,ClearView 24,Technology,Monitors,296.7
+6,CurveMax 32,Technology,Monitors,273.27
+7,Wireless Mouse,Technology,Accessories,357.73
+8,Mechanical Keyboard,Technology,Accessories,42.08
+9,USB-C Hub,Technology,Accessories,173.39
+10,Mesh Router AC,Technology,Networking,19.68
+11,Gigabit Switch 8,Technology,Networking,93.71
+12,WiFi Extender,Technology,Networking,206.1
+13,ErgoChair Pro,Furniture,Chairs,18.4
+14,MeshBack Task Chair,Furniture,Chairs,85.94
+15,Executive Recliner,Furniture,Chairs,262.75
+16,StandDesk Adjustable,Furniture,Desks,221.62
+17,Corner Workstation,Furniture,Desks,94.41
+18,Compact Desk,Furniture,Desks,238.99
+19,Filing Cabinet 3-Drawer,Furniture,Storage,325.3
+20,Bookshelf Oak,Furniture,Storage,10.55
+21,Storage Bin Set,Furniture,Storage,323.88
+22,LED Desk Lamp,Furniture,Lighting,281.67
+23,Floor Lamp Modern,Furniture,Lighting,141.38
+24,Task Light Clip,Furniture,Lighting,68.95
+25,Copy Paper Ream,Office Supplies,Paper,383.23
+26,Sticky Notes Pack,Office Supplies,Paper,139.95
+27,Notebook Set,Office Supplies,Paper,44.36
+28,3-Ring Binder,Office Supplies,Binders,45.91
+29,Report Cover,Office Supplies,Binders,340.22
+30,Expanding File,Office Supplies,Binders,244.66
+31,Gel Pen Pack,Office Supplies,Pens,324.39
+32,Fine Liner Set,Office Supplies,Pens,294.05
+33,Highlighter Pack,Office Supplies,Pens,218.2
+34,Shipping Labels,Office Supplies,Labels,389.46
+35,Address Labels,Office Supplies,Labels,156.39
+36,Color Dot Labels,Office Supplies,Labels,224.4
+37,Bluetooth Speaker Mini,Electronics,Audio,333.13
+38,Noise Cancel Headphones,Electronics,Audio,250.46
+39,Soundbar Compact,Electronics,Audio,345.79
+40,Webcam 4K HD,Electronics,Cameras,234.32
+41,Action Cam Mini,Electronics,Cameras,284.19
+42,Security Cam Indoor,Electronics,Cameras,25.96
+43,Fitness Tracker,Electronics,Wearables,97.34
+44,Smartwatch Series X,Electronics,Wearables,121.44
+45,Sleep Tracker Band,Electronics,Wearables,39.28
+46,Smart Plug 2-Pack,Electronics,Smart Home,99.25
+47,Video Doorbell,Electronics,Smart Home,47.59
+48,Smart Bulb Kit,Electronics,Smart Home,116.97

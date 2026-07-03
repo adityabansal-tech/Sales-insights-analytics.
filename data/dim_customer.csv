@@ -1,0 +1,61 @@
+customer_id,customer_name,segment,country,region
+1,Anna Brown,Consumer,France,Europe
+2,Liam Chen,Consumer,Japan,Asia Pacific
+3,Ethan Martinez,Corporate,Canada,North America
+4,Liam Clark,Corporate,Mexico,North America
+5,Priya Martinez,Corporate,Canada,North America
+6,Liam Chen,Home Office,Mexico,North America
+7,Raj Wilson,Corporate,Australia,Asia Pacific
+8,Fatima Khan,Consumer,Germany,Europe
+9,Ethan Clark,Home Office,United Kingdom,Europe
+10,Yuki Singh,Consumer,France,Europe
+11,Ahmed Johnson,Consumer,Germany,Europe
+12,Maria Khan,Home Office,India,Asia Pacific
+13,Yuki Ito,Corporate,Canada,North America
+14,Omar Ali,Home Office,Australia,Asia Pacific
+15,James Garcia,Corporate,Japan,Asia Pacific
+16,Raj Garcia,Consumer,France,Europe
+17,Fatima Smith,Corporate,Japan,Asia Pacific
+18,Mia Brown,Home Office,India,Asia Pacific
+19,Sophia Johnson,Consumer,India,Asia Pacific
+20,Anna Brown,Consumer,Japan,Asia Pacific
+21,Omar Patel,Consumer,Germany,Europe
+22,Anna Davis,Consumer,United States,North America
+23,Ivy Chen,Corporate,Mexico,North America
+24,Wei Clark,Home Office,United States,North America
+25,Lucas Clark,Home Office,Canada,North America
+26,Omar Müller,Home Office,Mexico,North America
+27,Noah Davis,Home Office,United Kingdom,Europe
+28,Anna Ali,Consumer,Australia,Asia Pacific
+29,Emma Martinez,Consumer,Canada,North America
+30,Ivy Clark,Consumer,Mexico,North America
+31,James Chen,Consumer,Japan,Asia Pacific
+32,Emma Chen,Consumer,Canada,North America
+33,Mia Martinez,Corporate,United Kingdom,Europe
+34,Noah Clark,Home Office,Mexico,North America
+35,Ivy Nguyen,Corporate,Canada,North America
+36,Noah Garcia,Corporate,Mexico,North America
+37,Anna Müller,Home Office,France,Europe
+38,Priya Garcia,Home Office,Canada,North America
+39,Raj Garcia,Consumer,United States,North America
+40,Ethan Ali,Consumer,Canada,North America
+41,Liam Ali,Corporate,United States,North America
+42,Ethan Garcia,Home Office,Mexico,North America
+43,James Chen,Corporate,United States,North America
+44,Lucas Nguyen,Consumer,Canada,North America
+45,Olivia Kim,Corporate,Canada,North America
+46,Fatima Davis,Home Office,United Kingdom,Europe
+47,Ethan Nguyen,Corporate,United States,North America
+48,Noah Sharma,Home Office,Japan,Asia Pacific
+49,Priya Patel,Home Office,United States,North America
+50,Lucas Johnson,Consumer,India,Asia Pacific
+51,Mia Chen,Home Office,United States,North America
+52,Wei Martinez,Home Office,Germany,Europe
+53,Emma Singh,Home Office,India,Asia Pacific
+54,Wei Müller,Home Office,Japan,Asia Pacific
+55,Mia Patel,Home Office,Germany,Europe
+56,Raj Martinez,Consumer,France,Europe
+57,Sophia Ali,Consumer,Germany,Europe
+58,Fatima Ito,Consumer,India,Asia Pacific
+59,Ethan Wilson,Consumer,Australia,Asia Pacific
+60,Anna Chen,Corporate,Canada,North America

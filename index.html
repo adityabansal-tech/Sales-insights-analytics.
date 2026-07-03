@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sales Insights — Interactive Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <div class="title">Sales Insights Analytics</div>
+        <div class="hint">Interactive final-year project dashboard</div>
+      </div>
+      <div><a class="btn" href="#live">View Live Dashboard</a></div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-card">
+        <h2>Project Summary</h2>
+        <p class="hint">A complete ETL pipeline and analytics views powering interactive charts rendered directly from a shipped SQLite database.</p>
+        <div class="kpis" style="margin-top:12px">
+          <div class="kpi"><div class="label">Total Revenue</div><div id="k-revenue" class="value">—</div></div>
+          <div class="kpi"><div class="label">Total Profit</div><div id="k-profit" class="value">—</div></div>
+          <div class="kpi"><div class="label">Total Orders</div><div id="k-orders" class="value">—</div></div>
+          <div class="kpi"><div class="label">Avg Order Value</div><div id="k-aov" class="value">—</div></div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Benchmark</h3>
+        <div class="kpi"><div class="label">Index Speedup</div><div id="k-speedup" class="value">—</div></div>
+        <canvas id="chart-benchmark" style="margin-top:12px"></canvas>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Live Interactive Dashboard</h3>
+      <div id="live" class="grid">
+        <div class="card">
+          <h4>Revenue Trend</h4>
+          <canvas id="chart-monthly"></canvas>
+        </div>
+        <div class="card">
+          <h4>Category Breakdown</h4>
+          <canvas id="chart-categories"></canvas>
+        </div>
+        <div class="card">
+          <h4>Top Products</h4>
+          <canvas id="chart-products"></canvas>
+        </div>
+        <div class="card">
+          <h4>Regional Performance</h4>
+          <canvas id="chart-regional"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Top Customers</h3>
+      <div class="card table-wrap">
+        <table style="width:100%;border-collapse:collapse;color:#e6eef6">
+          <thead><tr style="text-align:left;color:var(--muted)"><th>ID</th><th>Customer</th><th>Segment</th><th>Last Order</th><th>Frequency</th><th>Monetary</th></tr></thead>
+          <tbody id="customers-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section footer">
+      <div>Built by you — <a href="#">View Source</a></div>
+      <div><a class="btn" href="index.html">Open Showcase Page</a></div>
+    </div>
+  </div>
+  <script>
+async function loadData() {
+  const res = await fetch('dashboard_data.json');
+  const data = await res.json();
+  return data;
+}
+
+function fmtCurrency(v) {
+  return '$' + Number(v).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+function initKpis(kpi) {
+  document.getElementById('k-revenue').textContent = fmtCurrency(kpi.total_revenue);
+  document.getElementById('k-profit').textContent = fmtCurrency(kpi.total_profit);
+  document.getElementById('k-orders').textContent = Number(kpi.total_orders).toLocaleString();
+  document.getElementById('k-aov').textContent = fmtCurrency(kpi.avg_order_value);
+  if (dataGlobal && dataGlobal.benchmark && dataGlobal.benchmark.speedup_pct !== undefined) {
+    document.getElementById('k-speedup').textContent = dataGlobal.benchmark.speedup_pct + '%';
+  }
+}
+
+function buildLineChart(ctx, labels, series) {
+  return new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: series },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: true, labels: { color: '#cbd9ff' } } },
+      scales: {
+        x: { ticks: { color: '#9aa6b2' }, grid: { color: 'rgba(255,255,255,0.02)' } },
+        y: { ticks: { color: '#9aa6b2' }, grid: { color: 'rgba(255,255,255,0.02)' } }
+      }
+    }
+  });
+}
+
+function buildBarChart(ctx, labels, values, label) {
+  return new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{label, data: values, backgroundColor: '#1f6feb'}] },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#9aa6b2' } },
+        y: { ticks: { color: '#9aa6b2' } }
+      }
+    }
+  });
+}
+
+function populateTable(rows) {
+  const tbody = document.getElementById('customers-body');
+  tbody.innerHTML = '';
+  for (const r of rows) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.customer_id}</td><td>${r.customer_name}</td><td>${r.segment}</td><td>${r.last_order_date}</td><td>${Number(r.frequency).toLocaleString()}</td><td>${fmtCurrency(r.monetary_value)}</td>`;
+    tbody.appendChild(tr);
+  }
+}
+
+let dataGlobal = null;
+
+async function boot() {
+  const data = await loadData();
+  dataGlobal = data;
+  const kpi = data.kpi && data.kpi.length ? data.kpi[0] : {};
+  initKpis(kpi);
+
+  const months = data.monthly.map(m => `${m.year}-${String(m.month).padStart(2,'0')}`);
+  const revenue = data.monthly.map(m => Number(m.total_revenue));
+  const profit = data.monthly.map(m => Number(m.total_profit));
+  buildLineChart(document.getElementById('chart-monthly').getContext('2d'), months, [
+    { label: 'Revenue', data: revenue, borderColor: '#1f6feb', backgroundColor: 'rgba(31,111,235,0.08)', fill: true },
+    { label: 'Profit', data: profit, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.06)', fill: true }
+  ]);
+
+  const catLabels = data.categories.map(c => c.category);
+  const catValues = data.categories.map(c => Number(c.total_revenue));
+  buildBarChart(document.getElementById('chart-categories').getContext('2d'), catLabels, catValues, 'Revenue');
+
+  const prodLabels = data.products.slice(0, 10).map(p => p.product_name);
+  const prodValues = data.products.slice(0, 10).map(p => Number(p.total_revenue));
+  buildBarChart(document.getElementById('chart-products').getContext('2d'), prodLabels, prodValues, 'Revenue');
+
+  const regLabels = data.regional.map(r => r.country);
+  const regValues = data.regional.map(r => Number(r.total_revenue));
+  buildBarChart(document.getElementById('chart-regional').getContext('2d'), regLabels, regValues, 'Revenue');
+
+  populateTable(data.customers.slice(0, 100));
+
+  if (data.benchmark) {
+    const withoutMs = data.benchmark.without_avg_ms || null;
+    const withMs = data.benchmark.with_avg_ms || null;
+    buildBarChart(document.getElementById('chart-benchmark').getContext('2d'), ['Without Indexes', 'With Indexes'], [withoutMs, withMs], 'ms');
+  }
+}
+
+boot().catch(e => console.error('Dashboard error:', e));
+  </script>
+</body>
+</html>

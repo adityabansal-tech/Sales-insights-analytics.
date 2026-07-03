@@ -1,0 +1,4 @@
+QUERY PERFORMANCE BENCHMARK
+Without indexes: avg=56.5ms (min=53.5ms, max=60.1ms)
+With indexes:    avg=74.4ms (min=71.0ms, max=80.2ms)
+Speedup: -31.7%
