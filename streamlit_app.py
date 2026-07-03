@@ -1,5 +1,29 @@
 import os
 import sqlite3
+
+# --- AUTOMATIC DATABASE INITIALIZATION ---
+db_path = "sales_insights.db"
+# If the database file is missing or totally empty, we force create the tables
+if not os.path.exists(db_path) or os.path.getsize(db_path) == 0:
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    
+    # Recreate the missing fact_sales table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS fact_sales (
+        order_id TEXT,
+        customer_id TEXT,
+        product_id TEXT,
+        sales_amount REAL,
+        profit REAL,
+        order_date TEXT
+    )
+    """)
+    conn.commit()
+    conn.close()
+# ----------------------------------------
+import os
+import sqlite3
 import pandas as pd
 import streamlit as st
 import plotly.express as px
